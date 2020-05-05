@@ -5,7 +5,7 @@ import withRedux, { ReduxWrapperAppProps } from "next-redux-wrapper";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { IState } from "../redux/IState";
+import { IState } from "../redux/interfaces/IState";
 import configureStore from "../redux/configureStore";
 import theme from "../theme";
 
