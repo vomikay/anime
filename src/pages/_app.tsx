@@ -1,28 +1,39 @@
 import React from "react";
 import Head from "next/head";
+import App, { AppContext, AppInitialProps } from "next/app";
+import withRedux, { ReduxWrapperAppProps } from "next-redux-wrapper";
+import { Provider } from "react-redux";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { IState } from "../redux/IState";
+import configureStore from "../redux/configureStore";
 import theme from "../theme";
-import { AppInitialProps } from "next/dist/next-server/lib/utils";
 
-interface IProps {
-  Component: React.ComponentType<AppInitialProps>;
-  pageProps: AppInitialProps;
+class MyApp extends App<ReduxWrapperAppProps<IState>> {
+  static async getInitialProps(appContext: AppContext): Promise<AppInitialProps> {
+    const { Component, ctx } = appContext;
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    return { pageProps };
+  }
+
+  render(): JSX.Element {
+    const { Component, pageProps, store } = this.props;
+    return (
+      <React.Fragment>
+        <Head>
+          <title>Anime</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        </Head>
+
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </Provider>
+      </React.Fragment>
+    );
+  }
 }
 
-const App: React.FC<IProps> = ({ Component, pageProps }) => {
-  return (
-    <React.Fragment>
-      <Head>
-        <title>My page</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </React.Fragment>
-  );
-};
-
-export default App;
+export default withRedux(configureStore)(MyApp);
