@@ -10,9 +10,7 @@ interface IProps {
   pageProps: AppInitialProps;
 }
 
-const App: React.FC<IProps> = (props) => {
-  const { Component, pageProps } = props;
-
+const App: React.FC<IProps> = ({ Component, pageProps }) => {
   return (
     <React.Fragment>
       <Head>
