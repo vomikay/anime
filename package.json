@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "next": "9.3.6",
     "next-redux-wrapper": "^6.0.0-rc.7",
+    "qim": "^0.0.52",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "^7.2.0",

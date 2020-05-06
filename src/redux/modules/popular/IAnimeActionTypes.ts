@@ -1,0 +1,5 @@
+export const LOAD_POPULAR_REQUEST = "anime/LOAD_POPULAR_REQUEST";
+export const LOAD_POPULAR_SUCCESS = "anime/LOAD_POPULAR_SUCCESS";
+export const LOAD_POPULAR_FAILURE = "anime/LOAD_POPULAR_FAILURE";
+
+export type LoadPopularActionTypes = typeof LOAD_POPULAR_REQUEST | typeof LOAD_POPULAR_SUCCESS | typeof LOAD_POPULAR_FAILURE;

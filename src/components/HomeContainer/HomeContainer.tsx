@@ -4,8 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import { MapStateToProps, MapDispatchToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
 import { IAnime } from "../../interfaces/IAnime";
-import { TLoadPopularActionFunc } from "../../redux/modules/popular/IPopularActions";
-import * as popularActions from "../../redux/modules/popular/impl/PopularActions";
+import { TLoadPopularActionFunc } from "../../redux/modules/popular/IAnimeActions";
+import * as animeActions from "../../redux/modules/popular/impl/AnimeActions";
 import PopularCard from "../PopularCard/PopularCard";
 
 interface IStateToProps {
@@ -17,11 +17,11 @@ interface IDispatchToProps {
 }
 
 const mapStateToProps: MapStateToProps<IStateToProps, {}, IState> = (state) => ({
-  anime: state.popular.data,
+  anime: state.anime.popular.data,
 });
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchToProps, {}> = {
-  loadPopular: popularActions.loadPopular,
+  loadPopular: animeActions.loadPopular,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import popularReducer from "./modules/popular/impl/PopularReducer";
+import animeReducer from "./modules/popular/impl/AnimeReducer";
 
 const rootReducer = combineReducers({
-  popular: popularReducer,
+  anime: animeReducer,
 });
 
 export default rootReducer;

@@ -1,16 +1,16 @@
 import axios, { AxiosError } from "axios";
 import { IResponseError } from "../../../interfaces/IResponseError";
 import { IAnime } from "../../../../interfaces/IAnime";
-import { LOAD_POPULAR_REQUEST, LOAD_POPULAR_SUCCESS, LOAD_POPULAR_FAILURE } from "../IPopularActionTypes";
-import { TLoadPopularThunkActionCreator, TLoadPopularActionCreator } from "../IPopularActions";
-import { IPopularResponse } from "../IPopularResponse";
+import { LOAD_POPULAR_REQUEST, LOAD_POPULAR_SUCCESS, LOAD_POPULAR_FAILURE } from "../IAnimeActionTypes";
+import { TLoadPopularThunkActionCreator, TLoadPopularActionCreator } from "../IAnimeActions";
+import { ILoadPopularResponse } from "../ILoadPopularResponse";
 
 export const loadPopular: TLoadPopularThunkActionCreator = () => {
   return (dispatch) => {
     dispatch(loadPopularRequest());
 
     axios
-      .get<IPopularResponse>("https://api.jikan.moe/v3/top/anime")
+      .get<ILoadPopularResponse>("https://api.jikan.moe/v3/top/anime")
       .then((res) => dispatch(loadPopularSuccess(res.data.top)))
       .catch((err: AxiosError) => dispatch(loadPopularFailure(err.response.data)));
   };

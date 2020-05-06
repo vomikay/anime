@@ -1,5 +1,5 @@
-import { IPopularState } from "../modules/popular/IPopularState";
+import { IAnimeState } from "../modules/popular/IAnimeState";
 
 export interface IState {
-  popular: IPopularState;
+  anime: IAnimeState;
 }
