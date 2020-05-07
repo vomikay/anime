@@ -1,4 +1,4 @@
-import { IAnimeState } from "../modules/popular/IAnimeState";
+import { IAnimeState } from "../modules/anime/IAnimeState";
 
 export interface IState {
   anime: IAnimeState;

@@ -4,8 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import { MapStateToProps, MapDispatchToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
 import { IAnime } from "../../interfaces/IAnime";
-import { TLoadPopularActionFunc } from "../../redux/modules/popular/IAnimeActions";
-import * as animeActions from "../../redux/modules/popular/impl/AnimeActions";
+import { TLoadPopularActionFunc } from "../../redux/modules/anime/IAnimeActions";
+import * as animeActions from "../../redux/modules/anime/impl/AnimeActions";
 import PopularCard from "../PopularCard/PopularCard";
 
 interface IStateToProps {
