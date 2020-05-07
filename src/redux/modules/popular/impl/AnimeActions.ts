@@ -6,10 +6,10 @@ import { TLoadPopularThunkActionCreator, TLoadPopularActionCreator } from "../IA
 import { ILoadPopularResponse } from "../ILoadPopularResponse";
 
 export const loadPopular: TLoadPopularThunkActionCreator = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(loadPopularRequest());
 
-    axios
+    await axios
       .get<ILoadPopularResponse>("https://api.jikan.moe/v3/top/anime")
       .then((res) => dispatch(loadPopularSuccess(res.data.top)))
       .catch((err: AxiosError) => dispatch(loadPopularFailure(err.response.data)));

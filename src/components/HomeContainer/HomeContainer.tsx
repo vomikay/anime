@@ -28,9 +28,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface IProps extends ConnectedProps<typeof connector> {}
 
-const HomeContainer: React.FC<IProps> = ({ anime, loadPopular }) => {
-  React.useEffect(() => loadPopular(), [loadPopular]);
-
+const HomeContainer: React.FC<IProps> = ({ anime }) => {
   return (
     <PageContainer>
       <Grid container spacing={4}>

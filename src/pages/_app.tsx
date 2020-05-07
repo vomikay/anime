@@ -9,9 +9,10 @@ import { IState } from "../redux/interfaces/IState";
 import configureStore from "../redux/configureStore";
 import theme from "../theme";
 
-class MyApp extends App<ReduxWrapperAppProps<IState>> {
-  static async getInitialProps(appContext: AppContext): Promise<AppInitialProps> {
-    const { Component, ctx } = appContext;
+interface IProps extends ReduxWrapperAppProps<IState> {}
+
+class MyApp extends App<IProps> {
+  static async getInitialProps({ Component, ctx }: AppContext): Promise<AppInitialProps> {
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
   }

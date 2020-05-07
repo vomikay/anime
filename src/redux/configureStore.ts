@@ -2,15 +2,20 @@ import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 import rootReducer from "./rootReducer";
+import { IState } from "./interfaces/IState";
+import { MakeStoreOptions } from "next-redux-wrapper";
 
-const configureStore = () => {
+const configureStore = (initialState: IState, { isServer }: MakeStoreOptions) => {
   const middlewares = [thunkMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
-  const enhancers = [middlewareEnhancer];
-  const composedEnhancers = composeWithDevTools(...enhancers);
+  if (isServer) {
+    return createStore(rootReducer, initialState, middlewareEnhancer);
+  }
 
-  const store = createStore(rootReducer, composedEnhancers);
+  const composedEnhancers = composeWithDevTools(middlewareEnhancer);
+
+  const store = createStore(rootReducer, initialState, composedEnhancers);
 
   return store;
 };
