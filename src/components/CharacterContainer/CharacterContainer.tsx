@@ -56,7 +56,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
 
         <Grid item sm={12} md={8}>
           <div className={classes.contentContainer}>
-            {isWidthUp("sm", width) && (
+            {isWidthUp("md", width) && (
               <Typography gutterBottom variant="h6" component="h1">
                 {`${name} (${name_kanji})`}
               </Typography>
