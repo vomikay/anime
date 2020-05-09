@@ -2,8 +2,9 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import Link from "../Link/Link";
+import { ROUTE_PATHS } from "../../routes";
 
 import styles from "./Header.styles";
 
@@ -14,7 +15,9 @@ const Header: React.FC<IProps> = ({ classes }) => {
     <AppBar className={classes.root} position="sticky">
       <Container maxWidth="md">
         <Toolbar disableGutters>
-          <Typography variant="h6">Anime</Typography>
+          <Link href={ROUTE_PATHS.index} variant="h6" color="inherit" underline="none">
+            Anime
+          </Link>
         </Toolbar>
       </Container>
     </AppBar>

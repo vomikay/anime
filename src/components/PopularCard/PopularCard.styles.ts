@@ -3,11 +3,6 @@ import createStyles from "@material-ui/core/styles/createStyles";
 
 const styles = (theme: Theme) =>
   createStyles({
-    root: {
-      display: "flex",
-      justifyContent: "flex-start",
-      position: "relative",
-    },
     media: {
       height: 225,
       width: 150,
@@ -32,6 +27,12 @@ const styles = (theme: Theme) =>
     },
     icon: {
       marginRight: 5,
+    },
+    link: {
+      display: "flex",
+      justifyContent: "flex-start",
+      position: "relative",
+      color: "inherit",
     },
   });
 

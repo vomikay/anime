@@ -1,6 +1,6 @@
 import { IResponse } from "../../interfaces/IResponse";
-import { IAnime } from "../../../interfaces/IAnime";
+import { IAnimeBase } from "../../../interfaces/IAnime";
 
 export interface ILoadPopularResponse extends IResponse {
-  readonly top: IAnime[];
+  readonly top: IAnimeBase[];
 }

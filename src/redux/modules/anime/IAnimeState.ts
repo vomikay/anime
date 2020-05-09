@@ -1,6 +1,7 @@
-import { IAnime } from "../../../interfaces/IAnime";
+import { IAnimeBase, IAnime } from "../../../interfaces/IAnime";
 import { IReducerRequestKey } from "../../interfaces/IReducerRequestKey";
 
 export interface IAnimeState {
-  readonly popular: IReducerRequestKey<IAnime[]>;
+  readonly popular: IReducerRequestKey<IAnimeBase[]>;
+  readonly currentAnime: IReducerRequestKey<IAnime>;
 }

@@ -1,30 +1,20 @@
 import React from "react";
 import PageContainer from "../PageContainer/PageContainer";
 import Grid from "@material-ui/core/Grid";
-import { MapStateToProps, MapDispatchToProps, connect, ConnectedProps } from "react-redux";
+import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
-import { IAnime } from "../../interfaces/IAnime";
-import { TLoadPopularActionFunc } from "../../redux/modules/anime/IAnimeActions";
-import * as animeActions from "../../redux/modules/anime/impl/AnimeActions";
+import { IAnimeBase } from "../../interfaces/IAnime";
 import PopularCard from "../PopularCard/PopularCard";
 
 interface IStateToProps {
-  anime: IAnime[];
-}
-
-interface IDispatchToProps {
-  loadPopular: TLoadPopularActionFunc;
+  anime: IAnimeBase[];
 }
 
 const mapStateToProps: MapStateToProps<IStateToProps, {}, IState> = (state) => ({
   anime: state.anime.popular.data,
 });
 
-const mapDispatchToProps: MapDispatchToProps<IDispatchToProps, {}> = {
-  loadPopular: animeActions.loadPopular,
-};
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(mapStateToProps);
 
 interface IProps extends ConnectedProps<typeof connector> {}
 
