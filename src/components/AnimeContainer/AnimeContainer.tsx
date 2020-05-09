@@ -12,11 +12,9 @@ import { joinGenres } from "../../utils/anime";
 import InformationBlock from "../InformationBlock/InformationBlock";
 import ResponsiveVideo from "../ResponsiveVideo/ResponsiveVideo";
 import Link from "../Link/Link";
+import MultilineText from "../MultilineText/MultilineText";
 
 import styles from "./AnimeContainer.styles";
-import { IAppContext } from "../../interfaces/IAppContext";
-import { AppContext } from "../../context";
-import MultilineText from "../MultilineText/MultilineText";
 
 interface IStateToProps {
   anime: IAnime;
@@ -46,8 +44,6 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
     url,
     background,
   } = anime;
-
-  const { isServer } = React.useContext<IAppContext>(AppContext);
 
   return (
     <PageContainer>
@@ -84,7 +80,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
             />
 
             <div className={classes.sourceLink}>
-              <Link href={url} target="_blank" variant="body1" color="textSecondary">
+              <Link href={url} prefetch={false} target="_blank" variant="body1" color="textSecondary">
                 View on MyAnimeList.net
               </Link>
             </div>
@@ -113,7 +109,9 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
               </InformationBlock>
             )}
 
-            <InformationBlock title={"Trailer"}>{!isServer && <ResponsiveVideo src={trailer_url} />}</InformationBlock>
+            <InformationBlock title={"Trailer"}>
+              <ResponsiveVideo src={trailer_url} />
+            </InformationBlock>
           </div>
         </Grid>
       </Grid>

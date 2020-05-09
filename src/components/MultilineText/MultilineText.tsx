@@ -15,10 +15,10 @@ const MultilineText: React.FC<IProps> = ({ text }) => {
     <>
       {text.split("\\n").map((line, index) => {
         return (
-          <>
-            <React.Fragment key={index}>{line}</React.Fragment>
+          <React.Fragment key={index}>
+            {line}
             <br />
-          </>
+          </React.Fragment>
         );
       })}
     </>

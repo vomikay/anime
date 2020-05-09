@@ -8,10 +8,10 @@ import PageContainer from "../PageContainer/PageContainer";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import InformationBlock from "../InformationBlock/InformationBlock";
-
-import styles from "./CharacterContainer.styles";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
+
+import styles from "./CharacterContainer.styles";
 
 interface IStateToProps {
   character: ICharacter;
@@ -48,7 +48,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
             </Typography>
 
             <div className={classes.sourceLink}>
-              <Link href={url} target="_blank" variant="body1" color="textSecondary">
+              <Link href={url} prefetch={false} target="_blank" variant="body1" color="textSecondary">
                 View on MyAnimeList.net
               </Link>
             </div>

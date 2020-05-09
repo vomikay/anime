@@ -8,8 +8,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { IState } from "../redux/interfaces/IState";
 import configureStore from "../redux/configureStore";
 import theme from "../theme";
-import { IAppContext } from "../interfaces/IAppContext";
-import { AppContext as ReactAppContext } from "../context";
 
 interface IProps extends ReduxWrapperAppProps<IState> {}
 
@@ -18,8 +16,6 @@ class MyApp extends App<IProps> {
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
   }
-
-  private appContext: IAppContext = { isServer: typeof window === "undefined" };
 
   render(): JSX.Element {
     const { Component, pageProps, store } = this.props;
@@ -32,10 +28,8 @@ class MyApp extends App<IProps> {
 
         <Provider store={store}>
           <ThemeProvider theme={theme}>
-            <ReactAppContext.Provider value={this.appContext}>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </ReactAppContext.Provider>
+            <CssBaseline />
+            <Component {...pageProps} />
           </ThemeProvider>
         </Provider>
       </React.Fragment>
