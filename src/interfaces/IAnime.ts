@@ -24,5 +24,6 @@ export interface IAnime extends IAnimeBase {
   rating: string;
   synopsis: string;
   trailer_url: string;
+  url: string;
   background?: string;
 }

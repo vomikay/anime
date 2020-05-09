@@ -12,6 +12,7 @@ import InformationBlock from "../InformationBlock/InformationBlock";
 import ResponsiveVideo from "../ResponsiveVideo/ResponsiveVideo";
 
 import styles from "./AnimeContainer.styles";
+import Link from "../Link/Link";
 
 interface IStateToProps {
   anime: IAnime;
@@ -38,6 +39,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
     rating,
     synopsis,
     trailer_url,
+    url,
     background,
   } = anime;
 
@@ -68,11 +70,18 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
                 ["Rating"]: rating,
               }}
             />
+
+            <div className={classes.sourceLink}>
+              <Link href={url} target="_blank" variant="body1" color="textSecondary">
+                View on MyAnimeList.net
+              </Link>
+            </div>
           </div>
         </Grid>
+
         <Grid item sm={12} md={8}>
           <div className={classes.contentContainer}>
-            <Typography gutterBottom variant="h4" component="h1">
+            <Typography gutterBottom variant="h6" component="h1">
               {title}
             </Typography>
 
