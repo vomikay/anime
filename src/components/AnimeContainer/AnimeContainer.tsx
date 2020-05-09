@@ -1,5 +1,6 @@
 import React from "react";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import withWidth, { WithWidth, isWidthDown, isWidthUp } from "@material-ui/core/withWidth";
 import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
 import { IAnime } from "../../interfaces/IAnime";
@@ -10,9 +11,11 @@ import ShortInformationBlock from "../ShortInformationBlock/ShortInformationBloc
 import { joinGenres } from "../../utils/anime";
 import InformationBlock from "../InformationBlock/InformationBlock";
 import ResponsiveVideo from "../ResponsiveVideo/ResponsiveVideo";
+import Link from "../Link/Link";
 
 import styles from "./AnimeContainer.styles";
-import Link from "../Link/Link";
+import { IAppContext } from "../../interfaces/IAppContext";
+import { AppContext } from "../../context";
 
 interface IStateToProps {
   anime: IAnime;
@@ -24,9 +27,9 @@ const mapStateToProps: MapStateToProps<IStateToProps, {}, IState> = (state) => (
 
 const connector = connect(mapStateToProps);
 
-interface IProps extends ConnectedProps<typeof connector>, WithStyles<typeof styles> {}
+interface IProps extends ConnectedProps<typeof connector>, WithStyles<typeof styles>, WithWidth {}
 
-const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
+const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
   const {
     image_url,
     title,
@@ -43,11 +46,19 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
     background,
   } = anime;
 
+  const { isServer } = React.useContext<IAppContext>(AppContext);
+
   return (
     <PageContainer>
       <Grid container spacing={3}>
         <Grid item sm={12} md={4}>
           <div className={classes.contentContainer}>
+            {isWidthDown("sm", width) && (
+              <Typography gutterBottom variant="h6" component="h1" align="center">
+                {title}
+              </Typography>
+            )}
+
             <div className={classes.titleImage}>
               <img src={image_url} alt={title} />
             </div>
@@ -81,9 +92,11 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
 
         <Grid item sm={12} md={8}>
           <div className={classes.contentContainer}>
-            <Typography gutterBottom variant="h6" component="h1">
-              {title}
-            </Typography>
+            {isWidthUp("sm", width) && (
+              <Typography gutterBottom variant="h6" component="h1">
+                {title}
+              </Typography>
+            )}
 
             <InformationBlock title={"Synopsis"}>
               <Typography gutterBottom variant="body1">
@@ -99,9 +112,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
               </InformationBlock>
             )}
 
-            <InformationBlock title={"Trailer"}>
-              <ResponsiveVideo src={trailer_url} />
-            </InformationBlock>
+            <InformationBlock title={"Trailer"}>{!isServer && <ResponsiveVideo src={trailer_url} />}</InformationBlock>
           </div>
         </Grid>
       </Grid>
@@ -109,4 +120,4 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime }) => {
   );
 };
 
-export default connector(withStyles(styles)(AnimeContainer));
+export default connector(withStyles(styles)(withWidth()(AnimeContainer)));

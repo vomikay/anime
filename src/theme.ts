@@ -19,6 +19,11 @@ const theme = createMuiTheme({
     },
     divider: "#bdbdbd",
   },
+  props: {
+    MuiWithWidth: {
+      initialWidth: "lg",
+    },
+  },
 });
 
 export default theme;

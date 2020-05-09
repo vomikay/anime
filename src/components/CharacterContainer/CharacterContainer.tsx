@@ -1,5 +1,6 @@
 import React from "react";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import withWidth, { WithWidth, isWidthDown, isWidthUp } from "@material-ui/core/withWidth";
 import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
 import { ICharacter } from "../../interfaces/ICharacter";
@@ -21,9 +22,9 @@ const mapStateToProps: MapStateToProps<IStateToProps, {}, IState> = (state) => (
 
 const connector = connect(mapStateToProps);
 
-interface IProps extends ConnectedProps<typeof connector>, WithStyles<typeof styles> {}
+interface IProps extends ConnectedProps<typeof connector>, WithStyles<typeof styles>, WithWidth {}
 
-const AnimeContainer: React.FC<IProps> = ({ classes, character }) => {
+const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
   const { image_url, member_favorites, url, name, name_kanji, about } = character;
 
   return (
@@ -31,6 +32,12 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character }) => {
       <Grid container spacing={3}>
         <Grid item sm={12} md={4}>
           <div className={classes.contentContainer}>
+            {isWidthDown("sm", width) && (
+              <Typography gutterBottom variant="h6" component="h1" align="center">
+                {`${name} (${name_kanji})`}
+              </Typography>
+            )}
+
             <div className={classes.titleImage}>
               <img src={image_url} alt={name} />
             </div>
@@ -49,9 +56,11 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character }) => {
 
         <Grid item sm={12} md={8}>
           <div className={classes.contentContainer}>
-            <Typography gutterBottom variant="h6" component="h1">
-              {`${name} (${name_kanji})`}
-            </Typography>
+            {isWidthUp("sm", width) && (
+              <Typography gutterBottom variant="h6" component="h1">
+                {`${name} (${name_kanji})`}
+              </Typography>
+            )}
 
             <InformationBlock title={"About"}>
               <Typography gutterBottom variant="body1">
@@ -65,4 +74,4 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character }) => {
   );
 };
 
-export default connector(withStyles(styles)(AnimeContainer));
+export default connector(withStyles(styles)(withWidth()(AnimeContainer)));
