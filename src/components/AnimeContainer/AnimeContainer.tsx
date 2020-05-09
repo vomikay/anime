@@ -16,6 +16,7 @@ import Link from "../Link/Link";
 import styles from "./AnimeContainer.styles";
 import { IAppContext } from "../../interfaces/IAppContext";
 import { AppContext } from "../../context";
+import MultilineText from "../MultilineText/MultilineText";
 
 interface IStateToProps {
   anime: IAnime;
@@ -100,14 +101,14 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
 
             <InformationBlock title={"Synopsis"}>
               <Typography gutterBottom variant="body1">
-                {synopsis}
+                <MultilineText text={synopsis} />
               </Typography>
             </InformationBlock>
 
             {background && (
               <InformationBlock title={"Background"}>
                 <Typography gutterBottom variant="body1">
-                  {background}
+                  <MultilineText text={background} />
                 </Typography>
               </InformationBlock>
             )}

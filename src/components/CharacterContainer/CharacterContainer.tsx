@@ -11,6 +11,7 @@ import InformationBlock from "../InformationBlock/InformationBlock";
 
 import styles from "./CharacterContainer.styles";
 import Link from "../Link/Link";
+import MultilineText from "../MultilineText/MultilineText";
 
 interface IStateToProps {
   character: ICharacter;
@@ -64,7 +65,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
 
             <InformationBlock title={"About"}>
               <Typography gutterBottom variant="body1">
-                {about}
+                <MultilineText text={about} />
               </Typography>
             </InformationBlock>
           </div>
