@@ -3,11 +3,11 @@ import PageContainer from "../PageContainer/PageContainer";
 import Grid from "@material-ui/core/Grid";
 import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
-import { IAnimeBase } from "../../interfaces/IAnime";
+import { TPopularAnimeListItem } from "../../interfaces/IAnime";
 import PopularCard from "../PopularCard/PopularCard";
 
 interface IStateToProps {
-  anime: IAnimeBase[];
+  anime: TPopularAnimeListItem[];
 }
 
 const mapStateToProps: MapStateToProps<IStateToProps, {}, IState> = (state) => ({

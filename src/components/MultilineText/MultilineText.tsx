@@ -1,10 +1,4 @@
 import React from "react";
-import PageContainer from "../PageContainer/PageContainer";
-import Grid from "@material-ui/core/Grid";
-import { MapStateToProps, connect, ConnectedProps } from "react-redux";
-import { IState } from "../../redux/interfaces/IState";
-import { IAnimeBase } from "../../interfaces/IAnime";
-import PopularCard from "../PopularCard/PopularCard";
 
 interface IProps {
   text: string;

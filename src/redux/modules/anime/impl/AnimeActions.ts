@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { IResponseError } from "../../../interfaces/IResponseError";
-import { IAnimeBase, IAnime } from "../../../../interfaces/IAnime";
+import { TPopularAnimeListItem, IAnime } from "../../../../interfaces/IAnime";
 import {
   LOAD_POPULAR_REQUEST,
   LOAD_POPULAR_SUCCESS,
@@ -33,7 +33,7 @@ const loadPopularRequest: TLoadPopularActionCreator = () => ({
   type: LOAD_POPULAR_REQUEST,
 });
 
-const loadPopularSuccess: TLoadPopularActionCreator = (anime: IAnimeBase[]) => ({
+const loadPopularSuccess: TLoadPopularActionCreator = (anime: TPopularAnimeListItem[]) => ({
   type: LOAD_POPULAR_SUCCESS,
   payload: anime,
 });

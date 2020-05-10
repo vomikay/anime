@@ -1,6 +1,6 @@
 import { IResponse } from "../../interfaces/IResponse";
-import { IAnimeBase } from "../../../interfaces/IAnime";
+import { TPopularAnimeListItem } from "../../../interfaces/IAnime";
 
 export interface ILoadPopularResponse extends IResponse {
-  readonly top: IAnimeBase[];
+  readonly top: TPopularAnimeListItem[];
 }

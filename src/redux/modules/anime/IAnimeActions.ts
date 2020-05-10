@@ -1,13 +1,13 @@
 import { ActionCreator } from "redux";
 import { LoadPopularActionTypes, LoadAnimeActionTypes } from "./IAnimeActionTypes";
-import { IAnimeBase, IAnime } from "../../../interfaces/IAnime";
+import { TPopularAnimeListItem, IAnime } from "../../../interfaces/IAnime";
 import { ThunkAction } from "redux-thunk";
 import { IState } from "../../interfaces/IState";
 import { IAction } from "../../interfaces/IAction";
 
 export type TAnimeActions = ILoadPopularAction | ILoadAnimeAction;
 
-export type ILoadPopularAction = IAction<LoadPopularActionTypes, IAnimeBase[]>;
+export type ILoadPopularAction = IAction<LoadPopularActionTypes, TPopularAnimeListItem[]>;
 export type TLoadPopularThunkAction = ThunkAction<Promise<void>, IState, undefined, ILoadPopularAction>;
 export type TLoadPopularActionCreator = ActionCreator<ILoadPopularAction>;
 export type TLoadPopularThunkActionCreator = ActionCreator<TLoadPopularThunkAction>;
