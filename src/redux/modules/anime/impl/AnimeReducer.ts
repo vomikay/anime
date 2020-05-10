@@ -10,6 +10,7 @@ import {
   LOAD_ANIME_FAILURE,
 } from "../IAnimeActionTypes";
 import { update, $set } from "qim";
+import { IAnime } from "../../../../interfaces/IAnime";
 
 const initialState: IAnimeState = {
   popular: {
@@ -44,7 +45,8 @@ const animeReducer: Reducer<IAnimeState, TAnimeActions> = (state = initialState,
     }
 
     case LOAD_ANIME_SUCCESS: {
-      return update(["currentAnime", ["data", $set(action.payload)], ["loading", $set(false)], ["error", $set(null)]], state);
+      const anime: IAnime = { ...action.payload.anime, characters: action.payload.characters };
+      return update(["currentAnime", ["data", $set(anime)], ["loading", $set(false)], ["error", $set(null)]], state);
     }
 
     case LOAD_ANIME_FAILURE: {

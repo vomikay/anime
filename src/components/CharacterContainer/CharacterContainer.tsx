@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import InformationBlock from "../InformationBlock/InformationBlock";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
+import PersonCard from "../PersonCard/PersonCard";
 
 import styles from "./CharacterContainer.styles";
 
@@ -26,16 +27,17 @@ const connector = connect(mapStateToProps);
 interface IProps extends ConnectedProps<typeof connector>, WithStyles<typeof styles>, WithWidth {}
 
 const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
-  const { image_url, member_favorites, url, name, name_kanji, about } = character;
+  const { image_url, member_favorites, url, name, name_kanji, about, voice_actors } = character;
+  const title = `${name} ${name_kanji ? `(${name_kanji})` : ""}`;
 
   return (
     <PageContainer>
       <Grid container spacing={3}>
-        <Grid item sm={12} md={4}>
+        <Grid item xs={12} md={4}>
           <div className={classes.contentContainer}>
             {isWidthDown("sm", width) && (
               <Typography gutterBottom variant="h6" component="h1" align="center">
-                {`${name} (${name_kanji})`}
+                {title}
               </Typography>
             )}
 
@@ -55,11 +57,11 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
           </div>
         </Grid>
 
-        <Grid item sm={12} md={8}>
+        <Grid item xs={12} md={8}>
           <div className={classes.contentContainer}>
             {isWidthUp("md", width) && (
               <Typography gutterBottom variant="h6" component="h1">
-                {`${name} (${name_kanji})`}
+                {title}
               </Typography>
             )}
 
@@ -68,6 +70,18 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
                 <MultilineText text={about} />
               </Typography>
             </InformationBlock>
+
+            {voice_actors && (
+              <InformationBlock title={"Voice Actors"}>
+                <Grid container spacing={2}>
+                  {voice_actors.map((actor) => (
+                    <Grid key={`actor-${actor.mal_id}`} item sm={12} md={6}>
+                      <PersonCard imageUrl={actor.image_url} title={actor.name} subtitle={actor.language} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </InformationBlock>
+            )}
           </div>
         </Grid>
       </Grid>

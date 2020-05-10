@@ -23,7 +23,7 @@ const HomeContainer: React.FC<IProps> = ({ anime }) => {
     <PageContainer>
       <Grid container spacing={4}>
         {anime.map((title) => (
-          <Grid key={title.mal_id} item xs={12} sm={6}>
+          <Grid key={`anime-${title.mal_id}`} item xs={12} sm={6}>
             <PopularCard anime={title} />
           </Grid>
         ))}

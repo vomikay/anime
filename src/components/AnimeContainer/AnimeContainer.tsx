@@ -13,6 +13,8 @@ import InformationBlock from "../InformationBlock/InformationBlock";
 import ResponsiveVideo from "../ResponsiveVideo/ResponsiveVideo";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
+import PersonCard from "../PersonCard/PersonCard";
+import { ROUTE_PATHS, getRoutePathWithParam } from "../../routes";
 
 import styles from "./AnimeContainer.styles";
 
@@ -43,12 +45,13 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
     trailer_url,
     url,
     background,
+    characters,
   } = anime;
 
   return (
     <PageContainer>
       <Grid container spacing={3}>
-        <Grid item sm={12} md={4}>
+        <Grid item xs={12} md={4}>
           <div className={classes.contentContainer}>
             {isWidthDown("sm", width) && (
               <Typography gutterBottom variant="h6" component="h1" align="center">
@@ -87,7 +90,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
           </div>
         </Grid>
 
-        <Grid item sm={12} md={8}>
+        <Grid item xs={12} md={8}>
           <div className={classes.contentContainer}>
             {isWidthUp("md", width) && (
               <Typography gutterBottom variant="h6" component="h1">
@@ -112,6 +115,24 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
             <InformationBlock title={"Trailer"}>
               <ResponsiveVideo src={trailer_url} />
             </InformationBlock>
+
+            {characters && (
+              <InformationBlock title={"Characters"}>
+                <Grid container spacing={2}>
+                  {characters.map((character) => (
+                    <Grid key={`character-${character.mal_id}`} item sm={12} md={6}>
+                      <PersonCard
+                        imageUrl={character.image_url}
+                        title={character.name}
+                        subtitle={character.role}
+                        href={ROUTE_PATHS.character}
+                        as={getRoutePathWithParam(ROUTE_PATHS.character, { id: character.mal_id })}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </InformationBlock>
+            )}
           </div>
         </Grid>
       </Grid>

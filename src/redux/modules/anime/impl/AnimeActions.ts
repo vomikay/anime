@@ -14,9 +14,11 @@ import {
   TLoadPopularActionCreator,
   TLoadAnimeThunkActionCreator,
   TLoadAnimeActionCreator,
+  TLoadAnimeActionPayload,
 } from "../IAnimeActions";
 import { ILoadPopularResponse } from "../ILoadPopularResponse";
 import { ILoadAnimeResponse } from "../ILoadAnimeResponse";
+import { ILoadAnimeCharactersResponse } from "../ILoadAnimeCharactersResponse";
 
 export const loadPopular: TLoadPopularThunkActionCreator = () => {
   return async (dispatch) => {
@@ -47,10 +49,19 @@ export const loadAnime: TLoadAnimeThunkActionCreator = (id: number) => {
   return async (dispatch) => {
     dispatch(loadAnimeRequest());
 
-    await axios
-      .get<ILoadAnimeResponse>(`${process.env.APIHOST}/anime/${id}`)
-      .then((res) => dispatch(loadAnimeSuccess(res.data)))
-      .catch((err: AxiosError<IResponseError>) => dispatch(loadAnimeFailure(err.response.data)));
+    await Promise.all([
+      axios.get<ILoadAnimeResponse>(`${process.env.APIHOST}/anime/${id}`),
+      axios.get<ILoadAnimeCharactersResponse>(`${process.env.APIHOST}/anime/${id}/characters_staff`),
+    ])
+      .then(([animeResponse, charactersResponse]) => {
+        dispatch(
+          loadAnimeSuccess({
+            anime: animeResponse.data,
+            characters: charactersResponse.data.characters,
+          })
+        );
+      })
+      .catch((err: AxiosError<IResponseError[]>) => dispatch(loadAnimeFailure(err.response.data)));
   };
 };
 
@@ -58,9 +69,9 @@ const loadAnimeRequest: TLoadAnimeActionCreator = () => ({
   type: LOAD_ANIME_REQUEST,
 });
 
-const loadAnimeSuccess: TLoadAnimeActionCreator = (anime: IAnime) => ({
+const loadAnimeSuccess: TLoadAnimeActionCreator = (payload: TLoadAnimeActionPayload) => ({
   type: LOAD_ANIME_SUCCESS,
-  payload: anime,
+  payload,
 });
 
 const loadAnimeFailure: TLoadAnimeActionCreator = (error: IResponseError) => ({
