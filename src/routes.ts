@@ -2,6 +2,7 @@ export enum ROUTE_PATHS {
   index = "/",
   anime = "/anime/[id]",
   character = "/character/[id]",
+  search = "/search",
 }
 
 type Param = { [key: string]: string | number };

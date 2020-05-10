@@ -10,7 +10,12 @@ interface IProps extends WithStyles<typeof styles> {
 const ResponsiveVideo: React.FC<IProps> = ({ classes, src }) => {
   return (
     <div className={classes.root}>
-      <iframe className={classes.inner} src={`${src}&autoplay=0&rel=0`} frameBorder={0} allowFullScreen />
+      <iframe
+        className={classes.inner}
+        src={`${src}&autoplay=0&rel=0`}
+        frameBorder={0}
+        allowFullScreen
+      />
     </div>
   );
 };

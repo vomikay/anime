@@ -6,6 +6,16 @@ const styles = (theme: Theme) =>
     root: {
       color: theme.palette.common.white,
     },
+    innerContainer: {
+      padding: theme.spacing(0, 2),
+    },
+    toolbar: {
+      display: "flex",
+      justifyContent: "space-between",
+    },
+    title: {
+      marginRight: theme.spacing(2),
+    },
   });
 
 export default styles;

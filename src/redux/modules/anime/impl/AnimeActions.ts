@@ -51,7 +51,9 @@ export const loadAnime: TLoadAnimeThunkActionCreator = (id: number) => {
 
     await Promise.all([
       axios.get<ILoadAnimeResponse>(`${process.env.APIHOST}/anime/${id}`),
-      axios.get<ILoadAnimeCharactersResponse>(`${process.env.APIHOST}/anime/${id}/characters_staff`),
+      axios.get<ILoadAnimeCharactersResponse>(
+        `${process.env.APIHOST}/anime/${id}/characters_staff`
+      ),
     ])
       .then(([animeResponse, charactersResponse]) => {
         dispatch(

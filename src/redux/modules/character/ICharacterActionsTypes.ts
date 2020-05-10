@@ -2,4 +2,7 @@ export const LOAD_CHARACTER_REQUEST = "character/LOAD_CHARACTER_REQUEST";
 export const LOAD_CHARACTER_SUCCESS = "character/LOAD_CHARACTER_SUCCESS";
 export const LOAD_CHARACTER_FAILURE = "character/LOAD_CHARACTER_FAILURE";
 
-export type LoadCharacterActionTypes = typeof LOAD_CHARACTER_REQUEST | typeof LOAD_CHARACTER_SUCCESS | typeof LOAD_CHARACTER_FAILURE;
+export type LoadCharacterActionTypes =
+  | typeof LOAD_CHARACTER_REQUEST
+  | typeof LOAD_CHARACTER_SUCCESS
+  | typeof LOAD_CHARACTER_FAILURE;

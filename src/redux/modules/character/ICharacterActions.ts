@@ -8,6 +8,11 @@ import { IAction } from "../../interfaces/IAction";
 export type TCharacterActions = ILoadCharacterAction;
 
 export type ILoadCharacterAction = IAction<LoadCharacterActionTypes, ICharacter>;
-export type TLoadCharacterThunkAction = ThunkAction<Promise<void>, IState, undefined, ILoadCharacterAction>;
+export type TLoadCharacterThunkAction = ThunkAction<
+  Promise<void>,
+  IState,
+  undefined,
+  ILoadCharacterAction
+>;
 export type TLoadCharacterActionCreator = ActionCreator<ILoadCharacterAction>;
 export type TLoadCharacterThunkActionCreator = ActionCreator<TLoadCharacterThunkAction>;

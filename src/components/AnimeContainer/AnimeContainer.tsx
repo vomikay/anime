@@ -15,6 +15,8 @@ import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
 import PersonCard from "../PersonCard/PersonCard";
 import { ROUTE_PATHS, getRoutePathWithParam } from "../../routes";
+import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import { useRouter } from "next/router";
 
 import styles from "./AnimeContainer.styles";
 
@@ -31,6 +33,8 @@ const connector = connect(mapStateToProps);
 interface IProps extends ConnectedProps<typeof connector>, WithStyles<typeof styles>, WithWidth {}
 
 const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
+  const router = useRouter();
+
   const {
     image_url,
     title,
@@ -48,8 +52,15 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
     characters,
   } = anime;
 
+  const search = React.useCallback(
+    (filters: ISearchFilters) => {
+      router.push({ pathname: ROUTE_PATHS.search, query: { ...filters } });
+    },
+    [router]
+  );
+
   return (
-    <PageContainer>
+    <PageContainer onSearch={search}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
           <div className={classes.contentContainer}>
@@ -83,7 +94,13 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
             />
 
             <div className={classes.sourceLink}>
-              <Link href={url} prefetch={false} target="_blank" variant="body1" color="textSecondary">
+              <Link
+                href={url}
+                prefetch={false}
+                target="_blank"
+                variant="body1"
+                color="textSecondary"
+              >
                 View on MyAnimeList.net
               </Link>
             </div>

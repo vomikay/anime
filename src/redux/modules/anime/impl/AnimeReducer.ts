@@ -33,7 +33,10 @@ const animeReducer: Reducer<IAnimeState, TAnimeActions> = (state = initialState,
 
     case LOAD_POPULAR_SUCCESS: {
       const data = action.payload.sort((a1, a2) => a1.rank - a2.rank);
-      return update(["popular", ["data", $set(data)], ["loading", $set(false)], ["error", $set(null)]], state);
+      return update(
+        ["popular", ["data", $set(data)], ["loading", $set(false)], ["error", $set(null)]],
+        state
+      );
     }
 
     case LOAD_POPULAR_FAILURE: {
@@ -46,11 +49,17 @@ const animeReducer: Reducer<IAnimeState, TAnimeActions> = (state = initialState,
 
     case LOAD_ANIME_SUCCESS: {
       const anime: IAnime = { ...action.payload.anime, characters: action.payload.characters };
-      return update(["currentAnime", ["data", $set(anime)], ["loading", $set(false)], ["error", $set(null)]], state);
+      return update(
+        ["currentAnime", ["data", $set(anime)], ["loading", $set(false)], ["error", $set(null)]],
+        state
+      );
     }
 
     case LOAD_ANIME_FAILURE: {
-      return update(["currentAnime", ["loading", $set(false)], ["error", $set(action.error)]], state);
+      return update(
+        ["currentAnime", ["loading", $set(false)], ["error", $set(action.error)]],
+        state
+      );
     }
 
     default:

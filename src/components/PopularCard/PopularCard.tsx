@@ -16,7 +16,10 @@ interface IProps extends WithStyles<typeof styles> {
   anime: TPopularAnimeListItem;
 }
 
-const PopularCard: React.FC<IProps> = ({ classes, anime: { mal_id, title, image_url, rank, members } }) => {
+const PopularCard: React.FC<IProps> = ({
+  classes,
+  anime: { mal_id, title, image_url, rank, members },
+}) => {
   return (
     <Card>
       <CardActionArea tabIndex={-1}>

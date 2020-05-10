@@ -9,7 +9,12 @@ import { TAnimeCharacterListItem } from "../../../interfaces/ICharacter";
 export type TAnimeActions = TLoadPopularAction | ILoadAnimeAction;
 
 export type TLoadPopularAction = IAction<LoadPopularActionTypes, TPopularAnimeListItem[]>;
-export type TLoadPopularThunkAction = ThunkAction<Promise<void>, IState, undefined, TLoadPopularAction>;
+export type TLoadPopularThunkAction = ThunkAction<
+  Promise<void>,
+  IState,
+  undefined,
+  TLoadPopularAction
+>;
 export type TLoadPopularActionCreator = ActionCreator<TLoadPopularAction>;
 export type TLoadPopularThunkActionCreator = ActionCreator<TLoadPopularThunkAction>;
 

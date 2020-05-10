@@ -5,6 +5,9 @@ import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
 import { TPopularAnimeListItem } from "../../interfaces/IAnime";
 import PopularCard from "../PopularCard/PopularCard";
+import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import { useRouter } from "next/router";
+import { ROUTE_PATHS } from "../../routes";
 
 interface IStateToProps {
   anime: TPopularAnimeListItem[];
@@ -19,8 +22,17 @@ const connector = connect(mapStateToProps);
 interface IProps extends ConnectedProps<typeof connector> {}
 
 const HomeContainer: React.FC<IProps> = ({ anime }) => {
+  const router = useRouter();
+
+  const search = React.useCallback(
+    (filters: ISearchFilters) => {
+      router.push({ pathname: ROUTE_PATHS.search, query: { ...filters } });
+    },
+    [router]
+  );
+
   return (
-    <PageContainer>
+    <PageContainer onSearch={search}>
       <Grid container spacing={4}>
         {anime.map((title) => (
           <Grid key={`anime-${title.mal_id}`} item xs={12} sm={6}>
