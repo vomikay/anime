@@ -2,12 +2,13 @@ import React from "react";
 import Header from "../Header/Header";
 import Container from "@material-ui/core/Container";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
-import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import { ISearchFilters, SearchBy } from "../../redux/modules/search/ISearchFilters";
 
 import styles from "./PageContainer.styles";
 
 interface IProps extends WithStyles<typeof styles> {
-  onSearch: (filters: ISearchFilters) => void;
+  searchInitialValues?: Partial<Omit<ISearchFilters, "page">>;
+  onSearch: (phrase: string, searchBy: SearchBy) => void;
 }
 
 const PageContainer: React.FC<IProps> = ({ classes, children, onSearch }) => {

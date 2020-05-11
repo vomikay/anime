@@ -5,8 +5,5 @@ import { ActionCreator } from "redux";
 
 export type TSearchActions = TChangeSearchFiltersAction;
 
-export type TChangeSearchFiltersAction = IAction<
-  TChangeSearchFiltersActionType,
-  Partial<ISearchFilters>
->;
+export type TChangeSearchFiltersAction = IAction<TChangeSearchFiltersActionType, ISearchFilters>;
 export type TChangeSearchFiltersActionCreator = ActionCreator<TChangeSearchFiltersAction>;

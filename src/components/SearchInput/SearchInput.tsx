@@ -9,16 +9,17 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { ISearchFilters, SearchBy } from "../../redux/modules/search/ISearchFilters";
-import { update, $merge } from "qim";
 
 import styles from "./SearchInput.styles";
 
+type InitialFilters = Omit<ISearchFilters, "page">;
+
 interface IProps extends WithStyles<typeof styles> {
-  initialFilters?: Partial<ISearchFilters>;
-  onSearch: (filters: ISearchFilters) => void;
+  initialFilters?: Partial<InitialFilters>;
+  onSearch: (phrase: string, searchBy: SearchBy) => void;
 }
 
-const defaultInitialFilters: ISearchFilters = {
+const defaultInitialFilters: InitialFilters = {
   phrase: "",
   searchBy: SearchBy.ANIME,
 };
@@ -29,8 +30,11 @@ const options = [
 ];
 
 const SearchInput: React.FC<IProps> = ({ classes, initialFilters, onSearch }) => {
-  const filters: ISearchFilters = initialFilters
-    ? update([$merge(initialFilters)], defaultInitialFilters)
+  const filters: InitialFilters = initialFilters
+    ? {
+        phrase: initialFilters.phrase || defaultInitialFilters.phrase,
+        searchBy: initialFilters.searchBy || defaultInitialFilters.searchBy,
+      }
     : defaultInitialFilters;
 
   const [phrase, setPhrase] = React.useState(filters.phrase);
@@ -38,35 +42,31 @@ const SearchInput: React.FC<IProps> = ({ classes, initialFilters, onSearch }) =>
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleChangePhrase = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPhrase(event.currentTarget.value);
-    },
+    (event: React.ChangeEvent<HTMLInputElement>) => setPhrase(event.currentTarget.value),
     [setPhrase]
   );
 
   const handlePressEnter = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "Enter") {
-        onSearch({ phrase, searchBy });
+        onSearch(phrase, searchBy);
       }
     },
     [phrase, searchBy, onSearch]
   );
 
-  const handleClickSearchButton = React.useCallback(() => {
-    onSearch({ phrase, searchBy });
-  }, [phrase, searchBy, onSearch]);
+  const handleClickSearchButton = React.useCallback(() => onSearch(phrase, searchBy), [
+    phrase,
+    searchBy,
+    onSearch,
+  ]);
 
   const handleClickSearchByButton = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
-    },
+    (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget),
     [setAnchorEl]
   );
 
-  const handleCloseSearchByMenu = React.useCallback(() => {
-    setAnchorEl(null);
-  }, [setAnchorEl]);
+  const handleCloseSearchByMenu = React.useCallback(() => setAnchorEl(null), [setAnchorEl]);
 
   const handleClickSearchByMenuItem = React.useCallback(
     (searchBy: SearchBy) => {

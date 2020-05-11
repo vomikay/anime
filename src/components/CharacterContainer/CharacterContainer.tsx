@@ -10,8 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import InformationBlock from "../InformationBlock/InformationBlock";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
-import PersonCard from "../PersonCard/PersonCard";
-import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import SimpleCard from "../PersonCard/PersonCard";
+import { SearchBy } from "../../redux/modules/search/ISearchFilters";
 import { useRouter } from "next/router";
 import { ROUTE_PATHS } from "../../routes";
 
@@ -34,8 +34,9 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
   const { image_url, member_favorites, url, name, name_kanji, about, voice_actors } = character;
 
   const search = React.useCallback(
-    (filters: ISearchFilters) => {
-      router.push({ pathname: ROUTE_PATHS.search, query: { ...filters } });
+    (phrase: string, searchBy: SearchBy) => {
+      const query = { phrase, searchBy };
+      router.push({ pathname: ROUTE_PATHS.search, query });
     },
     [router]
   );
@@ -94,7 +95,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, character, width }) => {
                 <Grid container spacing={2}>
                   {voice_actors.map((actor) => (
                     <Grid key={`actor-${actor.mal_id}`} item sm={12} md={6}>
-                      <PersonCard
+                      <SimpleCard
                         imageUrl={actor.image_url}
                         title={actor.name}
                         subtitle={actor.language}

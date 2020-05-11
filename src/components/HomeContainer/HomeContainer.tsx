@@ -5,7 +5,7 @@ import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
 import { TPopularAnimeListItem } from "../../interfaces/IAnime";
 import PopularCard from "../PopularCard/PopularCard";
-import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import { SearchBy } from "../../redux/modules/search/ISearchFilters";
 import { useRouter } from "next/router";
 import { ROUTE_PATHS } from "../../routes";
 
@@ -25,8 +25,9 @@ const HomeContainer: React.FC<IProps> = ({ anime }) => {
   const router = useRouter();
 
   const search = React.useCallback(
-    (filters: ISearchFilters) => {
-      router.push({ pathname: ROUTE_PATHS.search, query: { ...filters } });
+    (phrase: string, searchBy: SearchBy) => {
+      const query = { phrase, searchBy };
+      router.push({ pathname: ROUTE_PATHS.search, query });
     },
     [router]
   );

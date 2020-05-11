@@ -11,10 +11,10 @@ import styles from "./PersonCard.styles";
 
 interface IProps extends WithStyles<typeof styles> {
   title: string;
-  subtitle: string;
   imageUrl: string;
   href?: string;
   as?: string;
+  subtitle?: string;
 }
 
 type TLinkWrapperProps = Pick<IProps, "href" | "as"> & {
@@ -33,7 +33,7 @@ const LinkCardWrapper: React.FC<TLinkWrapperProps> = ({ className, children, hre
   );
 };
 
-const PersonCard: React.FC<IProps> = ({ classes, title, subtitle, imageUrl, href, as }) => {
+const SimpleCard: React.FC<IProps> = ({ classes, title, subtitle, imageUrl, href, as }) => {
   return (
     <Card>
       <LinkCardWrapper className={classes.link} href={href} as={as}>
@@ -42,13 +42,15 @@ const PersonCard: React.FC<IProps> = ({ classes, title, subtitle, imageUrl, href
           <Typography gutterBottom variant="h6">
             {title}
           </Typography>
-          <Typography gutterBottom variant="subtitle1" color="textPrimary">
-            {subtitle}
-          </Typography>
+          {subtitle && (
+            <Typography gutterBottom variant="subtitle1" color="textPrimary">
+              {subtitle}
+            </Typography>
+          )}
         </CardContent>
       </LinkCardWrapper>
     </Card>
   );
 };
 
-export default withStyles(styles)(PersonCard);
+export default withStyles(styles)(SimpleCard);

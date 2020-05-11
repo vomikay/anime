@@ -13,9 +13,9 @@ import InformationBlock from "../InformationBlock/InformationBlock";
 import ResponsiveVideo from "../ResponsiveVideo/ResponsiveVideo";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
-import PersonCard from "../PersonCard/PersonCard";
+import SimpleCard from "../PersonCard/PersonCard";
 import { ROUTE_PATHS, getRoutePathWithParam } from "../../routes";
-import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import { SearchBy } from "../../redux/modules/search/ISearchFilters";
 import { useRouter } from "next/router";
 
 import styles from "./AnimeContainer.styles";
@@ -53,8 +53,9 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
   } = anime;
 
   const search = React.useCallback(
-    (filters: ISearchFilters) => {
-      router.push({ pathname: ROUTE_PATHS.search, query: { ...filters } });
+    (phrase: string, searchBy: SearchBy) => {
+      const query = { phrase, searchBy };
+      router.push({ pathname: ROUTE_PATHS.search, query });
     },
     [router]
   );
@@ -138,7 +139,7 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
                 <Grid container spacing={2}>
                   {characters.map((character) => (
                     <Grid key={`character-${character.mal_id}`} item sm={12} md={6}>
-                      <PersonCard
+                      <SimpleCard
                         imageUrl={character.image_url}
                         title={character.name}
                         subtitle={character.role}

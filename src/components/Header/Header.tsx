@@ -6,12 +6,13 @@ import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Link from "../Link/Link";
 import { ROUTE_PATHS } from "../../routes";
 import SearchInput from "../SearchInput/SearchInput";
-import { ISearchFilters } from "../../redux/modules/search/ISearchFilters";
+import { ISearchFilters, SearchBy } from "../../redux/modules/search/ISearchFilters";
 
 import styles from "./Header.styles";
 
 interface IProps extends WithStyles<typeof styles> {
-  onSearch: (filters: ISearchFilters) => void;
+  searchInitialValues?: Partial<Omit<ISearchFilters, "page">>;
+  onSearch: (phrase: string, searchBy: SearchBy) => void;
 }
 
 const Header: React.FC<IProps> = ({ classes, onSearch }) => {
