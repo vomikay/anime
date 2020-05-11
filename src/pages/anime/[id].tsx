@@ -11,8 +11,12 @@ interface IProps {
 class Anime extends React.Component<IProps> {
   static async getInitialProps({ store, query }: INextPageContext): Promise<IProps> {
     const { getState, dispatch } = store;
-    await dispatch(animeActions.loadAnime(query.id));
-    return { title: getState().anime.currentAnime.data.title };
+    try {
+      await dispatch(animeActions.loadAnime(query.id));
+      return { title: getState().anime.currentAnime.data.title };
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   render(): JSX.Element {

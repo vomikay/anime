@@ -7,7 +7,11 @@ import * as animeActions from "../redux/modules/anime/impl/AnimeActions";
 class Home extends React.Component {
   static async getInitialProps({ store }: INextPageContext): Promise<void> {
     const { dispatch } = store;
-    await dispatch(animeActions.loadPopular());
+    try {
+      await dispatch(animeActions.loadPopular());
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   render(): JSX.Element {

@@ -6,14 +6,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import { TPopularAnimeListItem } from "../../interfaces/IAnime";
+import { TAnimeListItem } from "../../interfaces/IAnime";
 import Link from "../Link/Link";
 import { ROUTE_PATHS, getRoutePathWithParam } from "../../routes";
 
 import styles from "./PopularCard.styles";
 
 interface IProps extends WithStyles<typeof styles> {
-  anime: TPopularAnimeListItem;
+  anime: TAnimeListItem;
 }
 
 const PopularCard: React.FC<IProps> = ({

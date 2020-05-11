@@ -11,8 +11,12 @@ interface IProps {
 class Character extends React.Component<IProps> {
   static async getInitialProps({ store, query }: INextPageContext): Promise<IProps> {
     const { getState, dispatch } = store;
-    await dispatch(characterActions.loadCharacter(query.id));
-    return { title: getState().character.currentCharacter.data.name };
+    try {
+      await dispatch(characterActions.loadCharacter(query.id));
+      return { title: getState().character.currentCharacter.data.name };
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   render(): JSX.Element {

@@ -3,14 +3,14 @@ import PageContainer from "../PageContainer/PageContainer";
 import Grid from "@material-ui/core/Grid";
 import { MapStateToProps, connect, ConnectedProps } from "react-redux";
 import { IState } from "../../redux/interfaces/IState";
-import { TPopularAnimeListItem } from "../../interfaces/IAnime";
+import { TAnimeListItem } from "../../interfaces/IAnime";
 import PopularCard from "../PopularCard/PopularCard";
 import { SearchBy } from "../../redux/modules/search/ISearchFilters";
 import { useRouter } from "next/router";
 import { ROUTE_PATHS } from "../../routes";
 
 interface IStateToProps {
-  anime: TPopularAnimeListItem[];
+  anime: TAnimeListItem[];
 }
 
 const mapStateToProps: MapStateToProps<IStateToProps, {}, IState> = (state) => ({

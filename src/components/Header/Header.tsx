@@ -11,11 +11,11 @@ import { ISearchFilters, SearchBy } from "../../redux/modules/search/ISearchFilt
 import styles from "./Header.styles";
 
 interface IProps extends WithStyles<typeof styles> {
-  searchInitialValues?: Partial<Omit<ISearchFilters, "page">>;
+  searchInitialValues?: Partial<ISearchFilters>;
   onSearch: (phrase: string, searchBy: SearchBy) => void;
 }
 
-const Header: React.FC<IProps> = ({ classes, onSearch }) => {
+const Header: React.FC<IProps> = ({ classes, searchInitialValues, onSearch }) => {
   return (
     <AppBar className={classes.root} position="sticky">
       <Container className={classes.innerContainer} maxWidth="md">
@@ -29,7 +29,7 @@ const Header: React.FC<IProps> = ({ classes, onSearch }) => {
           >
             Anime
           </Link>
-          <SearchInput onSearch={onSearch} />
+          <SearchInput initialFilters={searchInitialValues} onSearch={onSearch} />
         </Toolbar>
       </Container>
     </AppBar>

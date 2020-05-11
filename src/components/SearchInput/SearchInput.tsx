@@ -12,14 +12,12 @@ import { ISearchFilters, SearchBy } from "../../redux/modules/search/ISearchFilt
 
 import styles from "./SearchInput.styles";
 
-type InitialFilters = Omit<ISearchFilters, "page">;
-
 interface IProps extends WithStyles<typeof styles> {
-  initialFilters?: Partial<InitialFilters>;
+  initialFilters?: Partial<ISearchFilters>;
   onSearch: (phrase: string, searchBy: SearchBy) => void;
 }
 
-const defaultInitialFilters: InitialFilters = {
+const defaultInitialFilters: ISearchFilters = {
   phrase: "",
   searchBy: SearchBy.ANIME,
 };
@@ -30,7 +28,7 @@ const options = [
 ];
 
 const SearchInput: React.FC<IProps> = ({ classes, initialFilters, onSearch }) => {
-  const filters: InitialFilters = initialFilters
+  const filters: ISearchFilters = initialFilters
     ? {
         phrase: initialFilters.phrase || defaultInitialFilters.phrase,
         searchBy: initialFilters.searchBy || defaultInitialFilters.searchBy,

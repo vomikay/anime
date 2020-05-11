@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import InformationBlock from "../InformationBlock/InformationBlock";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
-import SimpleCard from "../PersonCard/PersonCard";
+import SimpleCard from "../SimpleCard/SimpleCard";
 import { SearchBy } from "../../redux/modules/search/ISearchFilters";
 import { useRouter } from "next/router";
 import { ROUTE_PATHS } from "../../routes";

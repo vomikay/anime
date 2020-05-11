@@ -15,10 +15,13 @@ class Search extends React.Component {
     } = state;
 
     const phrase = (query.phrase as string) || filters.phrase || "";
-    const searchBy = SearchBy[query.searchBy as string] || filters.phrase || SearchBy.ANIME;
-    const page = +query.page || filters.page || 1;
+    const searchBy = SearchBy[query.searchBy as string] || filters.searchBy || SearchBy.ANIME;
 
-    dispatch(searchActions.changeFilters({ phrase, searchBy, page }));
+    try {
+      await dispatch(searchActions.search(phrase, searchBy));
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   render(): JSX.Element {

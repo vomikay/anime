@@ -6,5 +6,4 @@ export enum SearchBy {
 export interface ISearchFilters {
   phrase: string;
   searchBy: SearchBy;
-  page: number;
 }

@@ -29,9 +29,9 @@ const loadCharacterRequest: TLoadCharacterActionCreator = () => ({
   type: LOAD_CHARACTER_REQUEST,
 });
 
-const loadCharacterSuccess: TLoadCharacterActionCreator = (anime: ICharacter) => ({
+const loadCharacterSuccess: TLoadCharacterActionCreator = (character: ICharacter) => ({
   type: LOAD_CHARACTER_SUCCESS,
-  payload: anime,
+  payload: character,
 });
 
 const loadCharacterFailure: TLoadCharacterActionCreator = (error: IResponseError) => ({

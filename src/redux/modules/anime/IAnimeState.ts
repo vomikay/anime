@@ -1,7 +1,7 @@
-import { TPopularAnimeListItem, IAnime } from "../../../interfaces/IAnime";
+import { TAnimeListItem, IAnime } from "../../../interfaces/IAnime";
 import { IReducerRequestKey } from "../../interfaces/IReducerRequestKey";
 
 export interface IAnimeState {
-  readonly popular: IReducerRequestKey<TPopularAnimeListItem[]>;
+  readonly popular: IReducerRequestKey<TAnimeListItem[]>;
   readonly currentAnime: IReducerRequestKey<IAnime>;
 }

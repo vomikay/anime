@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Link from "../Link/Link";
 
-import styles from "./PersonCard.styles";
+import styles from "./SimpleCard.styles";
 
 interface IProps extends WithStyles<typeof styles> {
   title: string;

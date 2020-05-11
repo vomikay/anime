@@ -1,5 +1,5 @@
-import { TAnimeCharacterListItem } from "../../../interfaces/ICharacter";
+import { TCharacterListItem } from "../../../interfaces/ICharacter";
 
 export interface ILoadAnimeCharactersResponse {
-  characters: TAnimeCharacterListItem[];
+  characters: TCharacterListItem[];
 }

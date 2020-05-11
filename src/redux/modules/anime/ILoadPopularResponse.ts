@@ -1,5 +1,5 @@
-import { TPopularAnimeListItem } from "../../../interfaces/IAnime";
+import { TAnimeListItem } from "../../../interfaces/IAnime";
 
 export interface ILoadPopularResponse {
-  top: TPopularAnimeListItem[];
+  top: TAnimeListItem[];
 }

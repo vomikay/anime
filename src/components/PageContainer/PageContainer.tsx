@@ -7,14 +7,14 @@ import { ISearchFilters, SearchBy } from "../../redux/modules/search/ISearchFilt
 import styles from "./PageContainer.styles";
 
 interface IProps extends WithStyles<typeof styles> {
-  searchInitialValues?: Partial<Omit<ISearchFilters, "page">>;
+  searchInitialValues?: Partial<ISearchFilters>;
   onSearch: (phrase: string, searchBy: SearchBy) => void;
 }
 
-const PageContainer: React.FC<IProps> = ({ classes, children, onSearch }) => {
+const PageContainer: React.FC<IProps> = ({ classes, children, searchInitialValues, onSearch }) => {
   return (
     <>
-      <Header onSearch={onSearch} />
+      <Header searchInitialValues={searchInitialValues} onSearch={onSearch} />
       <Container className={classes.container} maxWidth="md">
         {children}
       </Container>

@@ -16,6 +16,6 @@ export interface ICharacter {
   voice_actors: VoiceActor[];
 }
 
-export type TAnimeCharacterListItem = Pick<ICharacter, "mal_id" | "name" | "image_url"> & {
+export type TCharacterListItem = Pick<ICharacter, "mal_id" | "name" | "image_url"> & {
   role: string;
 };

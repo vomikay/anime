@@ -13,7 +13,7 @@ import InformationBlock from "../InformationBlock/InformationBlock";
 import ResponsiveVideo from "../ResponsiveVideo/ResponsiveVideo";
 import Link from "../Link/Link";
 import MultilineText from "../MultilineText/MultilineText";
-import SimpleCard from "../PersonCard/PersonCard";
+import SimpleCard from "../SimpleCard/SimpleCard";
 import { ROUTE_PATHS, getRoutePathWithParam } from "../../routes";
 import { SearchBy } from "../../redux/modules/search/ISearchFilters";
 import { useRouter } from "next/router";
@@ -130,11 +130,13 @@ const AnimeContainer: React.FC<IProps> = ({ classes, anime, width }) => {
               </InformationBlock>
             )}
 
-            <InformationBlock title={"Trailer"}>
-              <ResponsiveVideo src={trailer_url} />
-            </InformationBlock>
+            {trailer_url && (
+              <InformationBlock title={"Trailer"}>
+                <ResponsiveVideo src={trailer_url} />
+              </InformationBlock>
+            )}
 
-            {characters && (
+            {characters && !!characters.length && (
               <InformationBlock title={"Characters"}>
                 <Grid container spacing={2}>
                   {characters.map((character) => (

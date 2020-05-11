@@ -1,4 +1,4 @@
-import { TAnimeCharacterListItem } from "./ICharacter";
+import { TCharacterListItem } from "./ICharacter";
 
 export interface IGenre {
   mal_id: number;
@@ -7,7 +7,7 @@ export interface IGenre {
   url: string;
 }
 
-export interface IAnime extends TPopularAnimeListItem {
+export interface IAnime extends TAnimeListItem {
   mal_id: number;
   title: string;
   image_url: string;
@@ -22,10 +22,10 @@ export interface IAnime extends TPopularAnimeListItem {
   duration: string;
   rating: string;
   synopsis: string;
-  trailer_url: string;
   url: string;
+  trailer_url?: string;
   background?: string;
-  characters?: TAnimeCharacterListItem[];
+  characters?: TCharacterListItem[];
 }
 
-export type TPopularAnimeListItem = Pick<IAnime, "mal_id" | "title" | "image_url" | "rank" | "members">;
+export type TAnimeListItem = Pick<IAnime, "mal_id" | "title" | "image_url" | "rank" | "members">;
