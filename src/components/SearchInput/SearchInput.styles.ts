@@ -24,6 +24,14 @@ const styles = (theme: Theme) =>
       padding: 5,
       color: theme.palette.common.white,
     },
+    divider: {
+      height: 28,
+      margin: 4,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      ["&:focus-within"]: {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+    },
   });
 
 export default styles;

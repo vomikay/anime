@@ -9,6 +9,9 @@ const styles = (theme: Theme) =>
       flexShrink: 0,
       borderRadius: 4,
     },
+    content: {
+      padding: `36px ${theme.spacing(2)}px`,
+    },
     rank: {
       position: "absolute",
       height: 36,

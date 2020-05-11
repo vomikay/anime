@@ -30,7 +30,7 @@ const PopularCard: React.FC<IProps> = ({
           underline="none"
         >
           <CardMedia className={classes.media} image={image_url} title={title} />
-          <CardContent>
+          <CardContent className={classes.content}>
             <Typography gutterBottom variant="h6" component="h2">
               {title}
             </Typography>
